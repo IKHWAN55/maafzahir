@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Happy Birthday 🎉</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Birthday Celebration</title>
     <style>
-        /* General Reset */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             min-height: 100vh;
             background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -22,124 +23,377 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* Magic sparkles */
-        .sparkle {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #ffffffaa 0%, #ffffff00 70%);
-            border-radius: 50%;
-            animation: sparkle 2s linear infinite;
-        }
-
-        @keyframes sparkle {
-            0% {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.5) translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        /* Cake and candle animation */
+        
         .magic-container {
             text-align: center;
-            color: #fff;
-        }
-
-        .birthday-text {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: textGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes textGlow {
-            0% {
-                text-shadow: 0 0 10px #fff, 0 0 20px #f0f, 0 0 30px #c0f;
-            }
-            100% {
-                text-shadow: 0 0 20px #fff, 0 0 30px #f0f, 0 0 40px #c0f;
-            }
-        }
-
-        .magic-cake {
-            font-size: 5em;
-            margin: 20px 0;
+            z-index: 10;
             position: relative;
+            padding: 2rem;
         }
-
+        
+        .birthday-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff6b9d);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite, textGlow 2s ease-in-out infinite alternate;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+        }
+        
+        .magic-cake {
+            position: relative;
+            margin: 2rem 0;
+            animation: levitate 4s ease-in-out infinite;
+        }
+        
+        .cake-base {
+            font-size: 5rem;
+            filter: drop-shadow(0 0 20px rgba(248, 181, 0, 0.8));
+            animation: cakeGlow 2s ease-in-out infinite alternate;
+        }
+        
         .magic-candles {
             position: absolute;
             top: -20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
-
+        
         .magic-flame {
-            width: 10px;
-            height: 20px;
-            background: radial-gradient(ellipse at center, yellow 0%, orange 70%);
-            border-radius: 50% 50% 50% 50%;
-            animation: flameFlicker 1s infinite alternate;
+            width: 4px;
+            height: 15px;
+            background: linear-gradient(to top, #ff6b9d, #f8b500, #fff);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: magicFlicker 1s ease-in-out infinite alternate;
+            box-shadow: 0 0 10px rgba(248, 181, 0, 0.8);
         }
-
-        @keyframes flameFlicker {
-            0% {
-                transform: scale(1) rotate(0deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: scale(1.2) rotate(10deg);
-                opacity: 1;
-            }
-        }
-
+        
+        .magic-flame:nth-child(1) { animation-delay: 0s; }
+        .magic-flame:nth-child(2) { animation-delay: 0.2s; }
+        .magic-flame:nth-child(3) { animation-delay: 0.4s; }
+        .magic-flame:nth-child(4) { animation-delay: 0.6s; }
+        .magic-flame:nth-child(5) { animation-delay: 0.8s; }
+        
         .wish-message {
-            font-size: 1.5em;
-            margin-top: 20px;
-            animation: fadeInUp 2s ease-in-out;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #e8f4fd;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInMagic 2s ease-out 1s forwards;
+            text-shadow: 0 0 10px rgba(232, 244, 253, 0.5);
         }
-
-        @keyframes fadeInUp {
+        
+        .magic-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            opacity: 0;
+            animation: fadeInMagic 2s ease-out 1.5s forwards;
+        }
+        
+        .magic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .magic-button:hover::before {
+            left: 100%;
+        }
+        
+        .magic-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #fff;
+            animation: shootingStar 3s linear infinite;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(to right, #fff, transparent);
+            transform: translateX(100%);
+        }
+        
+        .shooting-star:nth-child(1) {
+            top: 20%;
+            left: -50px;
+            animation-delay: 0s;
+        }
+        
+        .shooting-star:nth-child(2) {
+            top: 40%;
+            left: -50px;
+            animation-delay: 2s;
+        }
+        
+        .shooting-star:nth-child(3) {
+            top: 60%;
+            left: -50px;
+            animation-delay: 4s;
+        }
+        
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #f8b500;
+            border-radius: 50%;
+            animation: floatUp 6s linear infinite;
+            box-shadow: 0 0 8px rgba(248, 181, 0, 0.8);
+        }
+        
+        .particle:nth-child(odd) {
+            background: #ff6b9d;
+            box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 0.5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 2.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 3.5s; }
+        
+        .magic-sparkles {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #f8b500;
+            animation: sparkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .magic-sparkles:nth-child(1) { top: 15%; left: 15%; animation-delay: 0s; }
+        .magic-sparkles:nth-child(2) { top: 25%; right: 20%; animation-delay: 0.5s; }
+        .magic-sparkles:nth-child(3) { top: 65%; left: 10%; animation-delay: 1s; }
+        .magic-sparkles:nth-child(4) { top: 75%; right: 15%; animation-delay: 1.5s; }
+        .magic-sparkles:nth-child(5) { top: 35%; left: 5%; animation-delay: 2s; }
+        .magic-sparkles:nth-child(6) { top: 85%; right: 25%; animation-delay: 0.3s; }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+            100% { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(248, 181, 0, 0.6); }
+        }
+        
+        @keyframes levitate {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+        
+        @keyframes cakeGlow {
+            0% { filter: drop-shadow(0 0 20px rgba(248, 181, 0, 0.8)); }
+            100% { filter: drop-shadow(0 0 40px rgba(248, 181, 0, 1)) drop-shadow(0 0 60px rgba(255, 107, 157, 0.6)); }
+        }
+        
+        @keyframes magicFlicker {
+            0% { 
+                transform: scale(1) rotate(-2deg);
+                box-shadow: 0 0 10px rgba(248, 181, 0, 0.8);
+            }
+            100% { 
+                transform: scale(1.1) rotate(2deg);
+                box-shadow: 0 0 20px rgba(248, 181, 0, 1), 0 0 30px rgba(255, 107, 157, 0.6);
+            }
+        }
+        
+        @keyframes fadeInMagic {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
+        }
+        
+        @keyframes shootingStar {
+            0% {
+                transform: translateX(-50px) translateY(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(100vw + 50px)) translateY(-200px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1) rotate(0deg); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.3) rotate(180deg); 
+            }
+        }
+        
+        .celebration-burst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid rgba(248, 181, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            max-width: 90%;
+        }
+        
+        .celebration-burst.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .celebration-burst h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff6b9d, #f8b500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+        
+        .celebration-burst p {
+            color: #e8f4fd;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .magic-close-btn {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+        }
+        
+        .magic-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 107, 157, 0.6);
         }
     </style>
 </head>
 <body>
-    <!-- Sparkle Effects -->
-    <script>
-        // Create sparkles automatically
-        function createSparkle() {
-            const sparkle = document.createElement("div");
-            sparkle.className = "sparkle";
-            sparkle.style.left = `${Math.random() * 100}%`;
-            sparkle.style.top = `${Math.random() * 100}%`;
-            sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
-            document.body.appendChild(sparkle);
-
-            setTimeout(() => sparkle.remove(), 2000);
-        }
-
-        setInterval(createSparkle, 200);
-    </script>
-
+    <!-- Shooting Stars -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    
+    <!-- Floating Particles -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <!-- Magic Sparkles -->
+    <div class="magic-sparkles">✨</div>
+    <div class="magic-sparkles">⭐</div>
+    <div class="magic-sparkles">✨</div>
+    <div class="magic-sparkles">⭐</div>
+    <div class="magic-sparkles">✨</div>
+    <div class="magic-sparkles">⭐</div>
+    
     <!-- Main Content -->
     <div class="magic-container">
         <h1 class="birthday-text">Shēngrì kuàilè !!</h1>
-
+        
         <div class="magic-cake">
             <div class="cake-base">🎂</div>
             <div class="magic-candles">
@@ -150,8 +404,117 @@
                 <div class="magic-flame"></div>
             </div>
         </div>
-
-        <p class="wish-message">✨ Maaf Zahir dan Batin ✨</p>
+        
+        <p class="wish-message">✨ Maaf Zahir Batin ✨</p>
+        
+        
     </div>
-</body>
+    
+   
+    
+    <script>
+        function castBirthdaySpell() {
+            const modal = document.getElementById('magicModal');
+            modal.classList.add('show');
+            
+            // Create magical particle explosion
+            createMagicalExplosion();
+            
+            // Add extra shooting stars
+            createShootingStars();
+        }
+        
+        function closeMagic() {
+            const modal = document.getElementById('magicModal');
+            modal.classList.remove('show');
+        }
+        
+        function createMagicalExplosion() {
+            const colors = ['#ff6b9d', '#f8b500', '#667eea', '#764ba2', '#c44569'];
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                particle.style.width = Math.random() * 8 + 4 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '999';
+                particle.style.boxShadow = `0 0 10px ${particle.style.backgroundColor}`;
+                
+                document.body.appendChild(particle);
+                
+                const angle = (Math.PI * 2 * i) / 30;
+                const velocity = Math.random() * 200 + 100;
+                const endX = centerX + Math.cos(angle) * velocity;
+                const endY = centerY + Math.sin(angle) * velocity;
+                
+                const animation = particle.animate([
+                    { 
+                        transform: 'translate(-50%, -50%) scale(0)',
+                        opacity: 1 
+                    },
+                    { 
+                        transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(1)`,
+                        opacity: 0 
+                    }
+                ], {
+                    duration: 2000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                animation.onfinish = () => particle.remove();
+            }
+        }
+        
+        function createShootingStars() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const star = document.createElement('div');
+                    star.className = 'shooting-star';
+                    star.style.top = Math.random() * 50 + 10 + '%';
+                    star.style.left = '-50px';
+                    document.body.appendChild(star);
+                    
+                    setTimeout(() => star.remove(), 3000);
+                }, i * 200);
+            }
+        }
+        
+        // Auto-trigger some magic effects
+        setTimeout(() => {
+            createMagicalExplosion();
+        }, 3000);
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('magicModal');
+            if (e.target === modal) {
+                closeMagic();
+            }
+        });
+        
+        // Add random sparkle effects
+        setInterval(() => {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.fontSize = '1rem';
+            sparkle.style.color = '#f8b500';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '5';
+            sparkle.style.animation = 'sparkle 1s ease-in-out forwards';
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }, 2000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96af98e0b0325fa9',t:'MTc1NDQ5NDQ1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
